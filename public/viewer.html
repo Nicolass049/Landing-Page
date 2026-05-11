@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEGO Star Wars — JSON Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Share+Tech+Mono&family=Boogaloo&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #080C14;
+      color: #B8C8DC;
+      font-family: 'Rajdhani', sans-serif;
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+      min-height: 100vh;
+    }
+
+    
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+    }
+
+    .header-logo {
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.8rem;
+      color: #FFD700;
+      text-shadow: 0 0 20px rgba(255,215,0,0.3);
+      line-height: 1;
+    }
+
+    .header-logo span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: #5A6A7A;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .header-nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .header-nav a {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5A6A7A;
+      text-decoration: none;
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .header-nav a:hover { color: #FFD700; border-color: rgba(255,215,0,0.5); }
+
+    
+    .control-bar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .btn {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 20px;
+      padding: 0.4rem 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 1px solid rgba(255,215,0,0.3);
+    }
+
+    .btn-refresh {
+      background: rgba(255,215,0,0.08);
+      color: #FFD700;
+    }
+
+    .btn-refresh:hover { background: rgba(255,215,0,0.15); }
+
+    .btn-copy {
+      background: rgba(255,255,255,0.04);
+      color: #B8C8DC;
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .btn-copy:hover { background: rgba(255,255,255,0.09); color: #E8F0F8; }
+
+    .auto-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: #5A6A7A;
+      margin-left: auto;
+    }
+
+    
+    .json-wrapper {
+      background: #0D1520;
+      border: 1px solid rgba(255,215,0,0.15);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .json-topbar {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1rem;
+      background: #111D2E;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .dot-r { width: 10px; height: 10px; border-radius: 50%; background: #CC0000; }
+    .dot-y { width: 10px; height: 10px; border-radius: 50%; background: #FFD700; }
+    .dot-g { width: 10px; height: 10px; border-radius: 50%; background: #2aab2a; }
+
+    .json-topbar span {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: #5A6A7A;
+      margin-left: 0.5rem;
+    }
+
+    #output {
+      padding: 1.5rem;
+      white-space: pre;
+      overflow-x: auto;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.75;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+
+    
+    .j-key    { color: #5a9e6f; }
+    .j-str    { color: #c8d4e8; }
+    .j-num    { color: #FFD700; }
+    .j-bool   { color: #e07070; }
+    .j-null   { color: #5A6A7A; }
+
+    
+    #error-msg {
+      display: none;
+      background: rgba(204,0,0,0.08);
+      border: 1px solid rgba(204,0,0,0.3);
+      border-radius: 8px;
+      color: #e57373;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    #error-msg code {
+      font-family: 'Share Tech Mono', monospace;
+      background: rgba(255,255,255,0.07);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+    }
+
+    
+    #output::-webkit-scrollbar       { width: 5px; height: 5px; }
+    #output::-webkit-scrollbar-track { background: #0D1520; }
+    #output::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.3); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-logo">
+      LEGO<br/><span>STAR WARS — JSON VIEWER</span>
+    </div>
+    <nav class="header-nav">
+      <a href="/">← Landing</a>
+      <a href="/pedidos.html">Lista pedidos</a>
+    </nav>
+  </header>
+
+  <div class="control-bar">
+    <button class="btn btn-refresh" onclick="loadData()">↺ Actualizar</button>
+    <button class="btn btn-copy"    onclick="copyJSON()">⎘ Copiar JSON</button>
+    <span class="auto-badge" id="auto-badge">Auto-refresh: 10s</span>
+  </div>
+
+  <div id="error-msg">
+    ⚠️ No se pudo conectar con el servidor.<br/>
+    Asegúrate de que <code>node server.js</code> está corriendo y
+    abre esta página desde <code>http://localhost:3000/viewer.html</code>
+  </div>
+
+  <div class="json-wrapper">
+    <div class="json-topbar">
+      <div class="dot-r"></div>
+      <div class="dot-y"></div>
+      <div class="dot-g"></div>
+      <span>data/pedidos.json — LEGO Star Wars Backend</span>
+    </div>
+    <pre id="output">Cargando datos...</pre>
+  </div>
+
+  <script>
+    let rawData = null;
+
+    
+    function highlight(json) {
+      return json.replace(
+        /("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g,
+        (match) => {
+          let cls = 'j-num';
+          if (/^"/.test(match))        cls = /:$/.test(match) ? 'j-key' : 'j-str';
+          else if (/true|false/.test(match)) cls = 'j-bool';
+          else if (/null/.test(match)) cls = 'j-null';
+          return `<span class="${cls}">${match}</span>`;
+        }
+      );
+    }
+
+    
+    async function loadData() {
+      const output  = document.getElementById('output');
+      const errorEl = document.getElementById('error-msg');
+      errorEl.style.display = 'none';
+
+      try {
+        const res  = await fetch('/api/pedidos');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        rawData = data;
+
+        output.innerHTML = highlight(JSON.stringify(data, null, 2));
+
+        
+        let count = 10;
+        const badge = document.getElementById('auto-badge');
+        clearInterval(window._countTimer);
+        window._countTimer = setInterval(() => {
+          count--;
+          badge.textContent = `Auto-refresh: ${count}s`;
+          if (count <= 0) clearInterval(window._countTimer);
+        }, 1000);
+
+      } catch (err) {
+        console.error('Error al cargar datos:', err);
+        errorEl.style.display = 'block';
+        output.textContent    = '// Error de conexión — comprueba que el servidor está activo.';
+      }
+    }
+
+    
+    async function copyJSON() {
+      if (!rawData) return;
+      try {
+        await navigator.clipboard.writeText(JSON.stringify(rawData, null, 2));
+        const btn = document.querySelector('.btn-copy');
+        const orig = btn.textContent;
+        btn.textContent = '✓ Copiado';
+        setTimeout(() => btn.textContent = orig, 1500);
+      } catch {
+        alert('No se pudo copiar. Usa Ctrl+A y Ctrl+C en el bloque de código.');
+      }
+    }
+
+    
+    loadData();
+    setInterval(loadData, 10000);
+  </script>
+
+</body>
+</html>

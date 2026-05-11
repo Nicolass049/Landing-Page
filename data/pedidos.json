@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1778533584272,
+    "fecha": "2026-05-11T21:06:24.273Z",
+    "nombre": "Nico",
+    "email": "nico@gmail.com",
+    "telefono": "555555555",
+    "producto": "edicion-estandar",
+    "cantidad": 1,
+    "direccion": "Calle hola",
+    "estado": "pendiente"
+  }
+]
