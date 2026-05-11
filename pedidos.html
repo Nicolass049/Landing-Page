@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEGO Star Wars — Lista de Pedidos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Boogaloo&display=swap" rel="stylesheet" />
+  <style>
+    
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #080C14;
+      color: #B8C8DC;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1rem;
+      padding: 2rem clamp(1rem, 4vw, 3rem);
+      min-height: 100vh;
+    }
+
+    
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255,215,0,0.2);
+    }
+
+    .header-logo {
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.8rem;
+      color: #FFD700;
+      text-shadow: 0 0 20px rgba(255,215,0,0.3);
+      line-height: 1;
+    }
+
+    .header-logo span {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: #5A6A7A;
+      display: block;
+      margin-top: 2px;
+    }
+
+    .header-nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .header-nav a {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #5A6A7A;
+      text-decoration: none;
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .header-nav a:hover { color: #FFD700; border-color: rgba(255,215,0,0.5); }
+
+    
+    .control-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .total-badge {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      color: #FFD700;
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: 20px;
+      padding: 0.35rem 1rem;
+    }
+
+    .btn-refresh {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(255,215,0,0.08);
+      border: 1px solid rgba(255,215,0,0.3);
+      color: #FFD700;
+      border-radius: 20px;
+      padding: 0.4rem 1.1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-refresh:hover { background: rgba(255,215,0,0.15); }
+
+    
+    #error-msg {
+      display: none;
+      background: rgba(204,0,0,0.08);
+      border: 1px solid rgba(204,0,0,0.3);
+      border-radius: 8px;
+      color: #e57373;
+      font-size: 0.9rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    #error-msg code {
+      font-family: 'Share Tech Mono', monospace;
+      background: rgba(255,255,255,0.07);
+      padding: 0.1rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.85rem;
+    }
+
+    
+    .table-wrapper {
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      min-width: 700px;
+    }
+
+    thead th {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #5A6A7A;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(255,215,0,0.15);
+      white-space: nowrap;
+      background: #0D1520;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.2s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover      { background: rgba(255,215,0,0.03); }
+
+    tbody td {
+      padding: 0.85rem 1rem;
+      vertical-align: middle;
+      color: #B8C8DC;
+    }
+
+    
+    .td-id {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: #5A6A7A;
+    }
+
+    .td-nombre { color: #E8F0F8; font-weight: 600; }
+
+    .td-producto {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+      color: #FFD700;
+    }
+
+    .td-cantidad {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .td-fecha {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      color: #5A6A7A;
+      white-space: nowrap;
+    }
+
+    .estado-badge {
+      display: inline-block;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 20px;
+    }
+
+    .estado-pendiente {
+      background: rgba(255,215,0,0.1);
+      color: #FFD700;
+      border: 1px solid rgba(255,215,0,0.3);
+    }
+
+    
+    .btn-delete {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: transparent;
+      border: 1px solid rgba(204,0,0,0.3);
+      color: #CC0000;
+      border-radius: 4px;
+      padding: 0.25rem 0.65rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-delete:hover {
+      background: rgba(204,0,0,0.12);
+      border-color: #CC0000;
+      color: #E63333;
+    }
+
+    
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #5A6A7A;
+    }
+
+    .empty-icon {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: 1rem;
+      opacity: 0.3;
+    }
+
+    .empty-state h3 {
+      font-family: 'Boogaloo', cursive;
+      font-size: 1.5rem;
+      color: #B8C8DC;
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-state p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    .empty-state a { color: #FFD700; }
+
+    
+    @media (max-width: 600px) {
+      .hide-sm { display: none; }
+      body { padding: 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <header class="header">
+    <div class="header-logo">
+      LEGO<br/><span>STAR WARS — PEDIDOS</span>
+    </div>
+    <nav class="header-nav">
+      <a href="/">← Landing</a>
+      <a href="/viewer.html">JSON Viewer</a>
+    </nav>
+  </header>
+
+  
+  <div class="control-bar">
+    <span class="total-badge" id="total-badge">Cargando...</span>
+    <button class="btn-refresh" onclick="loadPedidos()">↺ Actualizar</button>
+  </div>
+
+  
+  <div id="error-msg">
+    ⚠️ No se pudo conectar con el servidor.<br/>
+    Asegúrate de que <code>node server.js</code> está en ejecución y
+    abre esta página desde <code>http://localhost:3000/pedidos.html</code>
+  </div>
+
+  
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th class="hide-sm">Email</th>
+          <th>Producto</th>
+          <th>Cant.</th>
+          <th class="hide-sm">Fecha</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="pedidos-body">
+        <tr>
+          <td colspan="8">
+            <div class="empty-state">
+              <span class="empty-icon">⏳</span>
+              <h3>Cargando pedidos...</h3>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    
+    async function loadPedidos() {
+      const tbody     = document.getElementById('pedidos-body');
+      const totalEl   = document.getElementById('total-badge');
+      const errorEl   = document.getElementById('error-msg');
+
+      errorEl.style.display = 'none';
+
+      try {
+        const res  = await fetch('/api/pedidos');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data    = await res.json();
+        const pedidos = data.pedidos || [];
+
+        totalEl.textContent = `${pedidos.length} pedido${pedidos.length !== 1 ? 's' : ''} registrado${pedidos.length !== 1 ? 's' : ''}`;
+
+        if (pedidos.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="8">
+                <div class="empty-state">
+                  <span class="empty-icon">🧱</span>
+                  <h3>No hay pedidos todavía</h3>
+                  <p>Usa el <a href="/">formulario de la landing</a> para crear el primero.</p>
+                </div>
+              </td>
+            </tr>`;
+          return;
+        }
+
+        
+        tbody.innerHTML = [...pedidos].reverse().map(p => {
+          const fecha = new Date(p.fecha).toLocaleDateString('es-ES', {
+            day: '2-digit', month: '2-digit', year: '2-digit',
+            hour: '2-digit', minute: '2-digit'
+          });
+          const idShort = String(p.id).slice(-8);
+
+          return `
+            <tr id="row-${p.id}">
+              <td class="td-id">#${escHtml(idShort)}</td>
+              <td class="td-nombre">${escHtml(p.nombre)}</td>
+              <td class="hide-sm">${escHtml(p.email)}</td>
+              <td class="td-producto">${escHtml(p.producto)}</td>
+              <td class="td-cantidad">${p.cantidad}</td>
+              <td class="td-fecha hide-sm">${fecha}</td>
+              <td><span class="estado-badge estado-${escHtml(p.estado)}">${escHtml(p.estado)}</span></td>
+              <td>
+                <button class="btn-delete" onclick="deletePedido(${p.id})">✕ Borrar</button>
+              </td>
+            </tr>`;
+        }).join('');
+
+      } catch (err) {
+        console.error('Error al cargar pedidos:', err);
+        errorEl.style.display = 'block';
+        totalEl.textContent   = 'Error de conexión';
+        tbody.innerHTML = '';
+      }
+    }
+
+    
+    async function deletePedido(id) {
+      if (!confirm(`¿Seguro que quieres eliminar el pedido #${id}?`)) return;
+
+      try {
+        const res = await fetch(`/api/pedidos/${id}`, { method: 'DELETE' });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        
+        const row = document.getElementById(`row-${id}`);
+        if (row) {
+          row.style.transition = 'opacity 0.3s, transform 0.3s';
+          row.style.opacity    = '0';
+          row.style.transform  = 'translateX(20px)';
+          setTimeout(loadPedidos, 350);
+        } else {
+          loadPedidos();
+        }
+      } catch (err) {
+        console.error('Error al eliminar:', err);
+        alert('No se pudo eliminar el pedido. Comprueba que el servidor está activo.');
+      }
+    }
+
+    
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g,  '&amp;')
+        .replace(/</g,  '&lt;')
+        .replace(/>/g,  '&gt;')
+        .replace(/"/g,  '&quot;')
+        .replace(/'/g,  '&#039;');
+    }
+
+    
+    loadPedidos();
+    setInterval(loadPedidos, 30000);
+  </script>
+
+</body>
+</html>
