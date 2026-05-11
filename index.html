@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LEGO Star Wars: The Complete Saga</title>
+
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Boogaloo&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  
+  <div class="stars" aria-hidden="true">
+    <div class="stars-layer stars-s"></div>
+    <div class="stars-layer stars-m"></div>
+    <div class="stars-layer stars-l"></div>
+  </div>
+
+  
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+
+      
+      <a href="#inicio" class="nav-logo" aria-label="Inicio">
+        <span class="logo-lego">LEGO</span>
+        <span class="logo-sw">STAR WARS</span>
+      </a>
+
+      
+      <ul class="nav-links" id="nav-links" role="list">
+        <li><a href="#inicio"    class="nav-link">Inicio</a></li>
+        <li><a href="#saga"      class="nav-link">La Saga</a></li>
+        <li><a href="#personajes"class="nav-link">Personajes</a></li>
+        <li><a href="#ediciones" class="nav-link">Ediciones</a></li>
+        <li><a href="#tienda"    class="nav-link">Tienda</a></li>
+      </ul>
+
+      
+      <button
+        class="hamburger"
+        id="hamburger"
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >
+        <span class="ham-line" aria-hidden="true"></span>
+        <span class="ham-line" aria-hidden="true"></span>
+        <span class="ham-line" aria-hidden="true"></span>
+      </button>
+
+    </div>
+  </nav>
+
+ 
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  
+  <section id="inicio" class="hero" aria-label="Sección principal">
+
+    
+    <div class="hero-bricks" aria-hidden="true">
+      <div class="brick brick-1"></div>
+      <div class="brick brick-2"></div>
+      <div class="brick brick-3"></div>
+      <div class="brick brick-4"></div>
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow scroll-reveal">— LA GALAXIA EN BLOQUES —</p>
+
+      <h1 class="hero-title">
+        <span class="hero-title-lego scroll-reveal">LEGO®</span>
+        <span class="hero-title-sw scroll-reveal">STAR WARS</span>
+        <span class="hero-title-sub scroll-reveal">THE COMPLETE SAGA</span>
+      </h1>
+
+      <p class="hero-desc scroll-reveal">
+        Revive los 6 episodios de la saga con más de <strong>160 personajes</strong>,
+        vehículos icónicos y el humor inconfundible de LEGO.
+        ¡La Fuerza nunca fue tan divertida!
+      </p>
+
+      <div class="hero-badges scroll-reveal" aria-label="Características destacadas">
+        <span class="badge">🧱 +160 personajes</span>
+        <span class="badge">🚀 36 naves</span>
+        <span class="badge">⚔️ 6 episodios</span>
+        <span class="badge">👥 Co-op local</span>
+      </div>
+
+      <div class="hero-cta scroll-reveal">
+        <a href="#ediciones" class="btn btn-primary">Ver Ediciones</a>
+        <a href="#tienda"    class="btn btn-ghost">Comprar Ahora</a>
+      </div>
+    </div>
+
+    
+    <div class="hero-figure scroll-reveal" aria-hidden="true">
+      <div class="figure-body">
+        <div class="figure-head">
+          <div class="figure-helmet"></div>
+          <div class="figure-visor"></div>
+        </div>
+        <div class="figure-torso">
+          <div class="figure-chest"></div>
+        </div>
+        <div class="figure-legs">
+          <div class="figure-leg leg-l"></div>
+          <div class="figure-leg leg-r"></div>
+        </div>
+        <div class="figure-saber" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    
+    <div class="scroll-hint" aria-hidden="true">
+      <span class="scroll-hint-text">SCROLL</span>
+      <div class="scroll-hint-line"></div>
+    </div>
+
+  </section>
+
+  
+  <section id="saga" class="saga" aria-labelledby="saga-title">
+    <div class="container">
+
+      <div class="section-header scroll-reveal">
+        <p class="section-tag">// LA HISTORIA</p>
+        <h2 class="section-title" id="saga-title">Una galaxia muy,<br/><em>muy</em> lejana</h2>
+      </div>
+
+      <div class="saga-grid">
+
+        <div class="saga-text scroll-reveal">
+          <p class="body-text">
+            <strong>LEGO Star Wars: The Complete Saga</strong> reúne las dos entregas originales en un único juego épico.
+            Desde la amenaza fantasma hasta el regreso del Jedi, todo el universo Star Wars convertido en ladrillos.
+          </p>
+          <p class="body-text">
+            Con su característico humor sin diálogos y su jugabilidad accesible para todas las edades,
+            es uno de los juegos de LEGO más vendidos de la historia con más de
+            <strong>33 millones de copias</strong> en todo el mundo.
+          </p>
+          <div class="saga-stats" role="list" aria-label="Datos del juego">
+            <div class="stat scroll-reveal" role="listitem">
+              <span class="stat-num">160+</span>
+              <span class="stat-label">Personajes</span>
+            </div>
+            <div class="stat scroll-reveal" role="listitem">
+              <span class="stat-num">36</span>
+              <span class="stat-label">Vehículos</span>
+            </div>
+            <div class="stat scroll-reveal" role="listitem">
+              <span class="stat-num">120</span>
+              <span class="stat-label">Niveles</span>
+            </div>
+            <div class="stat scroll-reveal" role="listitem">
+              <span class="stat-num">33M</span>
+              <span class="stat-label">Copias vendidas</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="saga-episodes scroll-reveal" aria-label="Episodios incluidos">
+          <div class="episode-card">
+            <span class="episode-num">I</span>
+            <div class="episode-info">
+              <h3>La Amenaza Fantasma</h3>
+              <p>Qui-Gon, Obi-Wan y el pequeño Anakin contra la Federación de Comercio.</p>
+            </div>
+          </div>
+          <div class="episode-card">
+            <span class="episode-num">II</span>
+            <div class="episode-info">
+              <h3>El Ataque de los Clones</h3>
+              <p>El amor prohibido de Anakin y la batalla de Geonosis.</p>
+            </div>
+          </div>
+          <div class="episode-card">
+            <span class="episode-num">III</span>
+            <div class="episode-info">
+              <h3>La Venganza de los Sith</h3>
+              <p>La caída de Anakin y el nacimiento de Darth Vader.</p>
+            </div>
+          </div>
+          <div class="episode-card">
+            <span class="episode-num">IV</span>
+            <div class="episode-info">
+              <h3>Una Nueva Esperanza</h3>
+              <p>Luke, Han y Leia contra el Imperio y la Estrella de la Muerte.</p>
+            </div>
+          </div>
+          <div class="episode-card">
+            <span class="episode-num">V</span>
+            <div class="episode-info">
+              <h3>El Imperio Contraataca</h3>
+              <p>Hoth, Yoda en Dagobah y la gran revelación de Vader.</p>
+            </div>
+          </div>
+          <div class="episode-card">
+            <span class="episode-num">VI</span>
+            <div class="episode-info">
+              <h3>El Retorno del Jedi</h3>
+              <p>Los Ewoks, Jabba el Hutt y la batalla final por la galaxia.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="personajes" class="personajes" aria-labelledby="personajes-title">
+    <div class="container">
+
+      <div class="section-header scroll-reveal">
+        <p class="section-tag">// PERSONAJES</p>
+        <h2 class="section-title" id="personajes-title">Elige tu<br/><em>minifigura</em></h2>
+      </div>
+
+      <div class="chars-grid" role="list" aria-label="Personajes del juego">
+
+        <article class="char-card scroll-reveal" role="listitem">
+          <div class="char-avatar char-luke" aria-label="Luke Skywalker"></div>
+          <div class="char-info">
+            <h3 class="char-name">Luke Skywalker</h3>
+            <p class="char-side lado-luz">Lado de la Luz</p>
+            <p class="char-desc">Jedi en entrenamiento. Usa el sable láser azul y la Fuerza para superar cualquier obstáculo.</p>
+            <div class="char-skills" aria-label="Habilidades">
+              <span class="skill">Fuerza</span>
+              <span class="skill">Sable</span>
+              <span class="skill">Salto Jedi</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="char-card scroll-reveal" role="listitem">
+          <div class="char-avatar char-vader" aria-label="Darth Vader"></div>
+          <div class="char-info">
+            <h3 class="char-name">Darth Vader</h3>
+            <p class="char-side lado-oscuro">Lado Oscuro</p>
+            <p class="char-desc">Señor Sith. Sable rojo, Fuerza oscura y la capacidad de lanzar a los enemigos por los aires.</p>
+            <div class="char-skills" aria-label="Habilidades">
+              <span class="skill">Fuerza Oscura</span>
+              <span class="skill">Sable Rojo</span>
+              <span class="skill">Vuelo</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="char-card scroll-reveal" role="listitem">
+          <div class="char-avatar char-han" aria-label="Han Solo"></div>
+          <div class="char-info">
+            <h3 class="char-name">Han Solo</h3>
+            <p class="char-side lado-luz">Lado de la Luz</p>
+            <p class="char-desc">Contrabandista y héroe accidental. Dispara primero y hace preguntas después.</p>
+            <div class="char-skills" aria-label="Habilidades">
+              <span class="skill">Blaster</span>
+              <span class="skill">Disparo Rápido</span>
+              <span class="skill">Halcón</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="char-card scroll-reveal" role="listitem">
+          <div class="char-avatar char-yoda" aria-label="Yoda"></div>
+          <div class="char-info">
+            <h3 class="char-name">Yoda</h3>
+            <p class="char-side lado-luz">Lado de la Luz</p>
+            <p class="char-desc">Maestro Jedi. Pequeño en tamaño, enorme en la Fuerza. Agilidad y sabiduría incomparables.</p>
+            <div class="char-skills" aria-label="Habilidades">
+              <span class="skill">Súper Fuerza</span>
+              <span class="skill">Agilidad</span>
+              <span class="skill">Sable Verde</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="ediciones" class="ediciones" aria-labelledby="ediciones-title">
+    <div class="container">
+      <div class="section-header scroll-reveal">
+        <p class="section-tag">// EDICIONES</p>
+        <h2 class="section-title" id="ediciones-title">Elige tu<br/><em>edición</em></h2>
+      </div>
+    </div>
+
+    <div class="carousel-wrapper scroll-reveal" role="region" aria-label="Carrusel de ediciones" aria-roledescription="carrusel">
+      <div class="carousel-track" id="carousel-track">
+
+        <article class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="Diapositiva 1 de 5">
+          <div class="slide-img slide-standard" aria-hidden="true">
+            <div class="slide-lego-studs" aria-hidden="true"></div>
+          </div>
+          <div class="slide-badge">MÁS VENDIDA</div>
+          <div class="slide-info">
+            <h3 class="slide-title">Edición Estándar</h3>
+            <p class="slide-desc">El juego completo con los 6 episodios, multijugador local cooperativo y todos los modos de juego.</p>
+            <p class="slide-price">29<span>,99 €</span></p>
+            <a href="#tienda" class="btn btn-primary btn-sm">Pedir ahora</a>
+          </div>
+        </article>
+
+        <article class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="Diapositiva 2 de 5">
+          <div class="slide-img slide-gold" aria-hidden="true">
+            <div class="slide-lego-studs" aria-hidden="true"></div>
+          </div>
+          <div class="slide-badge slide-badge--gold">EDICIÓN ESPECIAL</div>
+          <div class="slide-info">
+            <h3 class="slide-title">Edición Oro</h3>
+            <p class="slide-desc">Incluye el juego + figuras LEGO exclusivas de Luke y Vader + póster firmado por el equipo.</p>
+            <p class="slide-price">79<span>,99 €</span></p>
+            <a href="#tienda" class="btn btn-primary btn-sm">Pedir ahora</a>
+          </div>
+        </article>
+
+        <article class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="Diapositiva 3 de 5">
+          <div class="slide-img slide-collector" aria-hidden="true">
+            <div class="slide-lego-studs" aria-hidden="true"></div>
+          </div>
+          <div class="slide-badge slide-badge--red">LIMITADA</div>
+          <div class="slide-info">
+            <h3 class="slide-title">Edición Coleccionista</h3>
+            <p class="slide-desc">Set LEGO Halcón Milenario + juego digital + artbook de 180 páginas con arte conceptual.</p>
+            <p class="slide-price">149<span>,99 €</span></p>
+            <a href="#tienda" class="btn btn-primary btn-sm">Pedir ahora</a>
+          </div>
+        </article>
+
+        <article class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="Diapositiva 4 de 5">
+          <div class="slide-img slide-artbook" aria-hidden="true">
+            <div class="slide-lego-studs" aria-hidden="true"></div>
+          </div>
+          <div class="slide-badge">COMPLEMENTO</div>
+          <div class="slide-info">
+            <h3 class="slide-title">Artbook Oficial</h3>
+            <p class="slide-desc">Diseño de personajes, niveles y vehículos. Arte conceptual exclusivo del equipo Traveller's Tales.</p>
+            <p class="slide-price">24<span>,99 €</span></p>
+            <a href="#tienda" class="btn btn-primary btn-sm">Pedir ahora</a>
+          </div>
+        </article>
+
+        <article class="carousel-slide" role="group" aria-roledescription="diapositiva" aria-label="Diapositiva 5 de 5">
+          <div class="slide-img slide-bundle" aria-hidden="true">
+            <div class="slide-lego-studs" aria-hidden="true"></div>
+          </div>
+          <div class="slide-badge slide-badge--gold">MEJOR PRECIO</div>
+          <div class="slide-info">
+            <h3 class="slide-title">Bundle Saga Completa</h3>
+            <p class="slide-desc">Edición Estándar + Artbook + figura Yoda exclusiva + banda sonora oficial en vinilo.</p>
+            <p class="slide-price">99<span>,99 €</span></p>
+            <a href="#tienda" class="btn btn-primary btn-sm">Pedir ahora</a>
+          </div>
+        </article>
+
+      </div>
+
+     
+      <button class="carousel-btn carousel-prev" id="carousel-prev" aria-label="Edición anterior">&#8592;</button>
+      <button class="carousel-btn carousel-next" id="carousel-next" aria-label="Edición siguiente">&#8594;</button>
+
+      
+      <div class="carousel-dots" id="carousel-dots" role="tablist" aria-label="Seleccionar edición">
+        <button class="dot active" data-index="0" role="tab" aria-selected="true"  aria-label="Edición 1"></button>
+        <button class="dot"        data-index="1" role="tab" aria-selected="false" aria-label="Edición 2"></button>
+        <button class="dot"        data-index="2" role="tab" aria-selected="false" aria-label="Edición 3"></button>
+        <button class="dot"        data-index="3" role="tab" aria-selected="false" aria-label="Edición 4"></button>
+        <button class="dot"        data-index="4" role="tab" aria-selected="false" aria-label="Edición 5"></button>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="tienda" class="tienda" aria-labelledby="tienda-title">
+    <div class="container">
+
+      <div class="section-header scroll-reveal">
+        <p class="section-tag">// TIENDA</p>
+        <h2 class="section-title" id="tienda-title">Realiza tu<br/><em>pedido</em></h2>
+      </div>
+
+      <div class="tienda-grid">
+
+        
+        <aside class="tienda-info scroll-reveal" aria-label="Información de compra">
+          <p class="body-text">
+            Completa el formulario y tu pedido quedará guardado en nuestra base de datos.
+            Recibirás confirmación en tu correo en menos de 24h.
+          </p>
+          <ul class="perks-list" aria-label="Ventajas de compra">
+            <li class="perk scroll-reveal">
+              <span class="perk-icon" aria-hidden="true">🚀</span>
+              <span>Envío gratuito en pedidos mayores de 50€</span>
+            </li>
+            <li class="perk scroll-reveal">
+              <span class="perk-icon" aria-hidden="true">🔒</span>
+              <span>Pago 100% seguro y cifrado</span>
+            </li>
+            <li class="perk scroll-reveal">
+              <span class="perk-icon" aria-hidden="true">📦</span>
+              <span>Entrega en 3–5 días laborables</span>
+            </li>
+            <li class="perk scroll-reveal">
+              <span class="perk-icon" aria-hidden="true">🔄</span>
+              <span>Devoluciones sin preguntas en 30 días</span>
+            </li>
+          </ul>
+
+          <!-- Links admin -->
+          <div class="admin-links" aria-label="Herramientas de administración">
+            <p class="admin-label">Panel de administración:</p>
+            <a href="/pedidos.html" class="admin-link" target="_blank" rel="noopener">📋 Ver todos los pedidos</a>
+            <a href="/viewer.html"  class="admin-link" target="_blank" rel="noopener">🗂 JSON Viewer</a>
+          </div>
+        </aside>
+
+        
+        <div class="form-wrapper scroll-reveal">
+          <form id="pedido-form" class="pedido-form" novalidate aria-label="Formulario de pedido">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre completo <span aria-hidden="true">*</span></label>
+                <input type="text"  id="nombre"   name="nombre"   placeholder="Han Solo"           required autocomplete="name" />
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Correo electrónico <span aria-hidden="true">*</span></label>
+                <input type="email" id="email"    name="email"    placeholder="han@halcon.com"      required autocomplete="email" />
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel"   id="telefono" name="telefono" placeholder="+34 600 000 000"    autocomplete="tel" />
+              </div>
+              <div class="form-group">
+                <label for="cantidad">Cantidad <span aria-hidden="true">*</span></label>
+                <input type="number" id="cantidad" name="cantidad" min="1" max="99" value="1"       required />
+                <span class="field-error" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="producto">Producto <span aria-hidden="true">*</span></label>
+              <select id="producto" name="producto" required aria-required="true">
+                <option value="" disabled selected>Selecciona una edición</option>
+                <option value="edicion-estandar">Edición Estándar — 29,99 €</option>
+                <option value="edicion-oro">Edición Oro — 79,99 €</option>
+                <option value="edicion-coleccionista">Edición Coleccionista — 149,99 €</option>
+                <option value="artbook">Artbook Oficial — 24,99 €</option>
+                <option value="bundle-saga">Bundle Saga Completa — 99,99 €</option>
+              </select>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="direccion">Dirección de envío <span aria-hidden="true">*</span></label>
+              <textarea id="direccion" name="direccion" rows="3"
+                placeholder="Calle, número, ciudad, código postal, provincia..." required></textarea>
+              <span class="field-error" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+              <span class="btn-text">Confirmar Pedido 🧱</span>
+              <span class="btn-loading" aria-hidden="true">Enviando...</span>
+            </button>
+
+          </form>
+
+          
+          <div id="form-success" class="form-success" role="alert" aria-live="polite" hidden>
+            <div class="success-icon" aria-hidden="true">✓</div>
+            <h3>¡Pedido confirmado!</h3>
+            <p>Tu pedido ha sido guardado correctamente en nuestra base de datos.<br/>
+               Consulta <a href="/pedidos.html" target="_blank" rel="noopener">la lista de pedidos</a> para verlo.</p>
+            <button class="btn btn-ghost" id="new-order-btn">Hacer otro pedido</button>
+          </div>
+
+          
+          <div id="form-error" class="form-error" role="alert" aria-live="assertive" hidden>
+            <p>⚠️ No se pudo conectar con el servidor.<br/>
+               Asegúrate de que <code>node server.js</code> está en ejecución.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <p class="footer-logo" aria-label="LEGO Star Wars">LEGO<br/><span>STAR WARS</span></p>
+          <p class="footer-quote">
+            <em>"Que la Fuerza (y los ladrillos)<br/>te acompañen."</em>
+          </p>
+        </div>
+
+        <nav class="footer-nav" aria-label="Navegación footer">
+          <h3 class="footer-nav-title">Navegar</h3>
+          <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#saga">La Saga</a></li>
+            <li><a href="#personajes">Personajes</a></li>
+            <li><a href="#ediciones">Ediciones</a></li>
+            <li><a href="#tienda">Tienda</a></li>
+          </ul>
+        </nav>
+
+        <nav class="footer-nav" aria-label="Soporte footer">
+          <h3 class="footer-nav-title">Soporte</h3>
+          <ul>
+            <li><a href="/pedidos.html" target="_blank" rel="noopener">Ver Pedidos</a></li>
+            <li><a href="/viewer.html"  target="_blank" rel="noopener">JSON Viewer</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Términos y Condiciones</a></li>
+          </ul>
+        </nav>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2024 LEGO Star Wars Store · Proyecto académico — no afiliado con LEGO Group, Lucasfilm ni Disney.</p>
+      </div>
+    </div>
+  </footer>
+
+  
+  <button id="back-to-top" class="back-to-top" aria-label="Volver al inicio de la página">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>
